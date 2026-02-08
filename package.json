@@ -21,7 +21,9 @@
   "homepage": "https://github.com/Prasanth-ADS/multi-agent-content-generation-pipeline#readme",
   "dependencies": {
     "@huggingface/inference": "^4.13.11",
-    "@supabase/supabase-js": "^2.95.3"
+    "@supabase/supabase-js": "^2.95.3",
+    "dotenv": "^17.2.4",
+    "winston": "^3.19.0"
   },
   "devDependencies": {
     "@types/node": "^25.2.2",
