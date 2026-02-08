@@ -1,22 +1,45 @@
-import { testConnection } from './lib/huggingface-client';
+import { testConnection } from './lib/ollama-client';
 import { logAgentExecution, generateRunId, printLogSummary } from './lib/logger';
 import { countWords } from './lib/utils';
 
 async function main() {
-    console.log('🚀 Content Pipeline - Step 3: Logger Test\n');
+    console.log('\n');
+    console.log('╔═══════════════════════════════════════════════════════════╗');
+    console.log('║                                                           ║');
+    console.log('║      🚀 Content Pipeline - Ollama Local LLM Test          ║');
+    console.log('║                                                           ║');
+    console.log('╚═══════════════════════════════════════════════════════════╝');
+    console.log('\n');
 
-    // Test Hugging Face connection
+    // Test Ollama connection
+    console.log('📡 Step 1: Testing Ollama connection...\n');
+
     const isConnected = await testConnection();
 
     if (!isConnected) {
-        console.log('\n❌ Hugging Face connection failed.');
+        console.log('\n');
+        console.log('╔═══════════════════════════════════════════════════════════╗');
+        console.log('║  ❌ Ollama connection failed!                             ║');
+        console.log('║                                                           ║');
+        console.log('║  Please check:                                            ║');
+        console.log('║  1. Ollama is installed: https://ollama.com               ║');
+        console.log('║  2. Ollama is running: ollama serve                       ║');
+        console.log('║  3. Model is pulled: ollama pull phi3                     ║');
+        console.log('╚═══════════════════════════════════════════════════════════╝');
+        console.log('\n');
         process.exit(1);
     }
 
-    console.log('\n✅ Hugging Face connected!\n');
+    console.log('\n');
+    console.log('╔═══════════════════════════════════════════════════════════╗');
+    console.log('║  ✅ Ollama connection successful!                         ║');
+    console.log('║                                                           ║');
+    console.log('║  Local LLM is ready for content generation!               ║');
+    console.log('╚═══════════════════════════════════════════════════════════╝');
+    console.log('\n');
 
     // Test logger
-    console.log('📝 Testing file-based logger...\n');
+    console.log('📝 Step 2: Testing file-based logger...\n');
 
     const runId = generateRunId();
     console.log(`🆔 Generated Run ID: ${runId}\n`);
@@ -45,8 +68,14 @@ async function main() {
     // Print log summary
     printLogSummary(runId);
 
-    console.log('✅ Logger test complete!');
+    console.log('✅ All tests complete!');
     console.log('💡 Check the /logs directory for output files\n');
+
+    console.log('🎉 Pipeline initialization complete!');
+    console.log('📋 Available agents: Researcher, Writer, FactChecker, StylePolisher\n');
 }
 
-main().catch(console.error);
+main().catch((error) => {
+    console.error('💥 Pipeline failed to start:', error);
+    process.exit(1);
+});
