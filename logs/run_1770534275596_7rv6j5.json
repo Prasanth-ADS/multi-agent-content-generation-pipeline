@@ -1,0 +1,13 @@
+[
+  {
+    "timestamp": "2026-02-08T07:04:35.597Z",
+    "runId": "run_1770534275596_7rv6j5",
+    "agent": "test-agent",
+    "input": "This is test input for the agent",
+    "output": "{\"content\":\"This is test output from the agent\",\"metadata\":{\"agent\":\"test-agent\",\"timestamp\":\"2026-02-08T07:04:35.596Z\"},\"success\":true}",
+    "metadata": {
+      "agent": "test-agent",
+      "timestamp": "2026-02-08T07:04:35.596Z"
+    }
+  }
+]
