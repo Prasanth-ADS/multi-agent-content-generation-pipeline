@@ -21,8 +21,8 @@ An AI-powered system that converts Product Requirements Documents into polished 
 
 3. Add token to `.env` file:
 
-   ```
    HUGGINGFACE_API_TOKEN=hf_your_token_here
+
    ```
 
 4. Run connection test:
