@@ -55,7 +55,7 @@ def process_batch(input_dir: str, output_dir: str):
     # Save batch summary
     summary_file = output_path / 'batch_summary.json'
     summary_file.write_text(json.dumps(results, indent=2))
-    summary_file.write_text(json.dumps(results, indesnt =2 ))
+    summary_file.write_text(json.dumps(results, ident = 2))
     
     # Print summary
     print("\n" + "="*70)
