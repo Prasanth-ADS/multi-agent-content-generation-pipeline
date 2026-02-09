@@ -64,22 +64,27 @@ python src/main.py
 ### Quick Start
 
 ```bash
-# From command line
+# From command line (easiest)
 python src/cli.py --text "Write a blog about AI agents for developers" --title "AI Agents Guide"
-
-# From file
-python src/cli.py --file examples/ai_agents_prd.txt --output blog.md
 
 # Interactive mode
 python src/cli.py --interactive
 ```
 
-### Batch Processing
+### File Input
 
-Process multiple PRD files:
+Create a text file (e.g., `my_prd.txt`) with your requirements, then run:
 
 ```bash
-python src/batch_process.py ./examples ./outputs
+python src/cli.py --file my_prd.txt --output blog.md
+```
+
+### Batch Processing
+
+To process multiple files, sort them into a folder (e.g., `prds/`) and run:
+
+```bash
+python src/batch_process.py ./prds ./outputs
 ```
 
 ### Programmatic Usage
@@ -111,7 +116,7 @@ print(final.polished)
 
 ## Project Structure
 
-```
+```text
 content-pipeline/
 ├── src/
 │   ├── lib/
@@ -128,16 +133,34 @@ content-pipeline/
 │   ├── cli.py
 │   ├── batch_process.py
 │   └── main.py
-├── examples/
-├── logs/
+├── logs/           # (Local only)
 ├── requirements.txt
 ├── .env
 └── README.md
 ```
 
-## Examples
+## Sample PRD Format
 
-See `examples/` directory for sample PRDs.
+When using a file input, format your text like this:
+
+```text
+# Blog Post: Introduction to AI Agents
+
+Target Audience: Software developers
+Tone: Professional but accessible
+Length: 800-1000 words
+
+Requirements:
+- Explain what AI agents are
+- Discuss practical applications
+- Provide examples of frameworks
+
+Key Points:
+1. Definition of AI agents
+2. Difference from chatbots
+3. Real-world use cases
+4. Popular frameworks (LangChain, CrewAI)
+```
 
 ## Logging
 
