@@ -35,24 +35,31 @@ venv.bak/
 *.swp
 *.swo
 *~
-
-# Logs
-logs/
-*.log
-
-# OS
-.DS_Store
+*.DS_Store
 Thumbs.db
 
-# Node.js (legacy - to be removed)
+# Logs and Debug
+logs/
+*.log
+debug_output*.txt
+debug_result.txt
+
+# Generated Output
+*_output.md
+batch_outputs/
+test_output.md
+
+# Legacy (Node.js/TypeScript)
 node_modules/
 dist/
 *.js
 !*.config.js
-
-# TypeScript (legacy - to be removed)
 *.ts
 *.tsx
 tsconfig.json
 package.json
 package-lock.json
+
+# Agentic
+.gemini/
+.agent/

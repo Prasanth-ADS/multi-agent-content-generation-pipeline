@@ -159,7 +159,7 @@ Examples:
         if not file_path.exists():
             print(f"File not found: {args.file}")
             sys.exit(1)
-        prd_text = file_path.read_text()
+        prd_text = file_path.read_text(encoding='utf-8')
         title = args.title
         output_file = args.output
     else:

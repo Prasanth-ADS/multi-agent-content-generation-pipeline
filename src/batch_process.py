@@ -32,7 +32,7 @@ def process_batch(input_dir: str, output_dir: str):
         print(f"{'='*70}\n")
         
         try:
-            prd_text = prd_file.read_text()
+            prd_text = prd_file.read_text(encoding='utf-8')
             title = prd_file.stem.replace('_', ' ').replace('-', ' ').title()
             output_file = output_path / f"{prd_file.stem}_output.md"
             
