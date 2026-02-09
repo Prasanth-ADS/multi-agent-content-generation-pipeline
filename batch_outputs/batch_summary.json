@@ -1,0 +1,14 @@
+[
+  {
+    "file": "ai_agents_prd.txt",
+    "status": "success",
+    "output": "batch_outputs\\ai_agents_prd_output.md",
+    "run_id": "run_1770612014076_n4a9mx"
+  },
+  {
+    "file": "product_launch_prd.txt",
+    "status": "success",
+    "output": "batch_outputs\\product_launch_prd_output.md",
+    "run_id": "run_1770612076804_nhbdb2"
+  }
+]

@@ -1,59 +1,34 @@
-"""
-Multi-Agent Content Generation Pipeline
-Main entry point for testing connections and running the pipeline.
-"""
-
+from lib.huggingface_client import test_connection
+from cli import main as cli_main
 import sys
-from pathlib import Path
-# Add src to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent))
-
-from src.lib.ollama_client import test_connection
-
 
 def main():
-    """Main entry point."""
+    """Main entry point - test connection and show usage"""
     
-    print("\n")
-    print("╔═══════════════════════════════════════════════════════════╗")
-    print("║                                                           ║")
-    print("║      🚀 Content Pipeline - Python Version (Ollama)        ║")
-    print("║                                                           ║")
-    print("╚═══════════════════════════════════════════════════════════╝")
-    print("\n")
+    print("\n" + "="*70)
+    print("MULTI-AGENT CONTENT GENERATION PIPELINE")
+    print("="*70 + "\n")
     
-    print("📡 Step 1: Testing Ollama connection...\n")
-    
-    if test_connection():
-        print("\n")
-        print("╔═══════════════════════════════════════════════════════════╗")
-        print("║  ✅ Ollama connection successful!                         ║")
-        print("║                                                           ║")
-        print("║  Pipeline is ready for content generation!               ║")
-        print("╚═══════════════════════════════════════════════════════════╝")
-        print("\n")
-        
-        print("📋 Available agents:")
-        print("   1. Researcher - Extract topics and gather sources")
-        print("   2. Writer - Create draft blog post")
-        print("   3. Fact Checker - Validate claims")
-        print("   4. Style Polisher - Improve readability")
-        print("\n")
-        
-        print("💡 Run test: python src/tests/test_researcher.py")
-        print("\n")
-        
-    else:
-        print("\n")
-        print("╔═══════════════════════════════════════════════════════════╗")
-        print("║  ❌ Connection failed!                                    ║")
-        print("║                                                           ║")
-        print("║  Make sure Ollama is running: ollama serve                ║")
-        print("║  And phi3 model is pulled: ollama pull phi3               ║")
-        print("╚═══════════════════════════════════════════════════════════╝")
-        print("\n")
+    # Test connection
+    print("Testing Hugging Face API connection...")
+    if not test_connection():
+        print("\nConnection failed. Check your HUGGINGFACE_API_TOKEN in .env")
         sys.exit(1)
-
+    
+    print("\nConnection successful!\n")
+    print("="*70)
+    print("USAGE")
+    print("="*70)
+    print("\nRun the pipeline:")
+    print("  python src/cli.py --text 'Your PRD here' --title 'Blog Title'")
+    print("\nFor more options:")
+    print("  python src/cli.py --help")
+    print("\n" + "="*70 + "\n")
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1:
+        # If arguments provided, run CLI
+        cli_main()
+    else:
+        # Otherwise show help
+        main()

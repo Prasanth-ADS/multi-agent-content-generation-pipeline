@@ -1,0 +1,18 @@
+# Blog Post: Introduction to AI Agents
+
+Target Audience: Software developers
+Tone: Professional but accessible
+Length: 800-1000 words
+
+Requirements:
+- Explain what AI agents are
+- Discuss practical applications
+- Provide examples of frameworks
+- Include best practices
+
+Key Points:
+1. Definition of AI agents
+2. Difference from chatbots
+3. Real-world use cases
+4. Popular frameworks (LangChain, CrewAI)
+5. Getting started tips
