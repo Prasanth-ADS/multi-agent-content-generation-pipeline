@@ -8,9 +8,10 @@ from lib.agents.style_polisher import run_style_polisher
 from lib.logger import generate_run_id, print_log_summary, save_pipeline_result
 from lib.types import PRDInput
 from lib.utils import count_words
+from lib.formatters import convert_to_format
 import time
 
-def run_pipeline(prd_text: str, title: str = None, output_file: str = None):
+def run_pipeline(prd_text: str, title: str = None, output_file: str = None, output_format: str = 'md'):
     """Run the complete multi-agent pipeline"""
     
     print("\n" + "="*70)
@@ -85,10 +86,22 @@ def run_pipeline(prd_text: str, title: str = None, output_file: str = None):
         save_pipeline_result(result)
         
         # Output final content
+        # Output final content
         if output_file:
+            # Ensure output file has correct extension
             output_path = Path(output_file)
-            output_path.write_text(final.polished)
-            print(f"Content saved to: {output_file}")
+            if output_format != 'md':
+                output_path = output_path.with_suffix(f'.{output_format}')
+            
+            # Convert to desired format
+            final_path = convert_to_format(
+                final.polished,
+                output_format,
+                str(output_path),
+                title or "Blog Post"
+            )
+            
+            print(f"Content saved to: {final_path} ({output_format.upper()})")
         else:
             print("\n" + "="*70)
             print("FINAL CONTENT")
@@ -120,15 +133,18 @@ def main():
         description='Multi-Agent Content Generation Pipeline',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
-Examples:
-  # From text
-  python src/cli.py --text "Write a blog about AI agents" --title "AI Agents Guide"
+examples:
+  # Markdown output (default)
+  python src/cli.py --text "Your PRD" --title "Blog" --output blog.md
   
-  # From file
-  python src/cli.py --file prd.txt --title "My Blog Post"
+  # HTML output
+  python src/cli.py --file prd.txt --format html --output blog.html
   
-  # Save output
-  python src/cli.py --file prd.txt --output blog.md
+  # PDF output
+  python src/cli.py --file prd.txt --format pdf --output blog.pdf
+  
+  # DOCX output
+  python src/cli.py --file prd.txt --format docx --output blog.docx
   
   # Interactive mode
   python src/cli.py --interactive
@@ -142,6 +158,10 @@ Examples:
     
     parser.add_argument('--title', type=str, help='Blog post title')
     parser.add_argument('--output', type=str, help='Output file path (default: print to console)')
+    parser.add_argument('--format', type=str, 
+                       choices=['md', 'html', 'pdf', 'docx'],
+                       default='md',
+                       help='Output format (default: md)')
     
     args = parser.parse_args()
     
@@ -153,6 +173,7 @@ Examples:
             print("No input provided")
             sys.exit(1)
         title = input("\nBlog post title (optional): ").strip() or None
+        output_format = input("Output format [md/html/pdf/docx] (default: md): ").strip().lower() or 'md'
         output_file = input("Output file (optional, press Enter to print): ").strip() or None
     elif args.file:
         file_path = Path(args.file)
@@ -162,10 +183,12 @@ Examples:
         prd_text = file_path.read_text(encoding='utf-8')
         title = args.title
         output_file = args.output
+        output_format = args.format
     else:
         prd_text = args.text
         title = args.title
         output_file = args.output
+        output_format = args.format
     
     # Validate PRD
     if len(prd_text) < 50:
@@ -173,7 +196,7 @@ Examples:
         sys.exit(1)
     
     # Run pipeline
-    run_pipeline(prd_text, title, output_file)
+    run_pipeline(prd_text, title, output_file, output_format)
 
 if __name__ == "__main__":
     main()
