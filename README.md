@@ -23,7 +23,7 @@ This pipeline automates the entire content creation process:
 ## Requirements
 
 - Python 3.8+
-- Hugging Face account (free)
+- Ollama (installed and running)
 - 16GB RAM recommended
 - Internet connection
 
@@ -46,12 +46,18 @@ pip install -r requirements.txt
 Create `.env` file:
 
 ```bash
-HUGGINGFACE_API_TOKEN=your_token_here
-HF_MODEL=meta-llama/Llama-3.1-8B-Instruct
+OLLAMA_MODEL=phi3
 LOG_TO_FILE=true
+API_KEY=demo-api-key-123
+USE_WEB_SEARCH=true
 ```
 
-Get your token from: <https://huggingface.co/settings/tokens>
+Make sure Ollama is running:
+
+```bash
+ollama serve
+ollama pull phi3
+```
 
 ### 4. Test Connection
 
@@ -125,7 +131,7 @@ content-pipeline/
 │   │   │   ├── writer.py
 │   │   │   ├── fact_checker.py
 │   │   │   └── style_polisher.py
-│   │   ├── huggingface_client.py
+│   │   ├── ollama_client.py
 │   │   ├── types.py
 │   │   ├── logger.py
 │   │   └── utils.py
@@ -180,25 +186,19 @@ Typical pipeline execution:
 
 ## Troubleshooting
 
-**Model loading error:**
+**Model not found:**
 
-- Wait 30 seconds and retry
-- First run always slower (model warm-up)
-
-**Rate limit error:**
-
-- Free tier: ~1000 requests/day
-- Wait or upgrade to Hugging Face Pro
+- Run `ollama pull phi3`
 
 **Connection failed:**
 
-- Check HUGGINGFACE_API_TOKEN in .env
-- Verify internet connection
+- Ensure Ollama is running (`ollama serve`)
+- Verify `OLLAMA_MODEL` in `.env` matches your pulled model
 
 ## Cost
 
-- Hugging Face API: Free tier (sufficient for development)
-- No GPU required (uses cloud inference)
+- Local Inference: Free (via Ollama)
+- Web Search: Free (via DuckDuckGo)
 
 ## License
 
@@ -208,6 +208,7 @@ MIT License
 
 Built with:
 
-- Hugging Face Inference API
-- Llama 3.1 8B model
+- Ollama
+- Microsoft Phi-3 Model
+- DuckDuckGo Search
 - Python 3.x

@@ -1,4 +1,4 @@
-from lib.huggingface_client import test_connection
+from lib.ollama_client import test_connection
 from cli import main as cli_main
 import sys
 
@@ -10,9 +10,9 @@ def main():
     print("="*70 + "\n")
     
     # Test connection
-    print("Testing Hugging Face API connection...")
+    print("Testing Ollama connection...")
     if not test_connection():
-        print("\nConnection failed. Check your HUGGINGFACE_API_TOKEN in .env")
+        print("\nConnection failed. Make sure Ollama is running ('ollama serve')")
         sys.exit(1)
     
     print("\nConnection successful!\n")
