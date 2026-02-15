@@ -1,4 +1,0 @@
-This is a test PRD for the multi-agent content generation pipeline.
-It should be long enough to pass the minimum length check of 50 characters.
-We are testing the output format converters: HTML, PDF, and DOCX.
-Hopefully this text is sufficient.

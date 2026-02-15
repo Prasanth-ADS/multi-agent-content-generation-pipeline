@@ -5,9 +5,8 @@ import sys
 def main():
     """Main entry point - test connection and show usage"""
     
-    print("\n" + "="*70)
+    
     print("MULTI-AGENT CONTENT GENERATION PIPELINE")
-    print("="*70 + "\n")
     
     # Test connection
     print("Testing Ollama connection...")

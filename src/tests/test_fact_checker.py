@@ -16,11 +16,11 @@ def test_fact_checker():
     """Test the Fact-Checker Agent with full pipeline."""
     
     print("\n")
-    print("╔═══════════════════════════════════════════════════════════╗")
-    print("║                                                           ║")
-    print("║      🔍 Fact-Checker Agent Test (Python)                  ║")
-    print("║                                                           ║")
-    print("╚═══════════════════════════════════════════════════════════╝")
+    print("")
+    print("")
+    print("      🔍 Fact-Checker Agent Test (Python)          ")
+    print("")
+    print("")
     print("\n")
     
     # Generate run ID
@@ -28,9 +28,9 @@ def test_fact_checker():
     print(f"🆔 Run ID: {run_id}\n")
     
     try:
-        # ═══════════════════════════════════════════════════════════
+     
         # Step 1: Run researcher
-        # ═══════════════════════════════════════════════════════════
+
         print("📚 Step 1: Running researcher...\n")
         research = run_researcher(sample_prd, run_id)
         
@@ -39,10 +39,7 @@ def test_fact_checker():
             sys.exit(1)
         
         print(f"\n✅ Research complete: {len(research.sources)} sources, {len(research.facts)} facts\n")
-        
-        # ═══════════════════════════════════════════════════════════
-        # Step 2: Run writer
-        # ═══════════════════════════════════════════════════════════
+
         print("-" * 60)
         print("\n✍️  Step 2: Running writer...\n")
         
@@ -54,9 +51,7 @@ def test_fact_checker():
         
         print(f"\n✅ Draft complete: {draft.word_count} words, {len(draft.citations)} citations\n")
         
-        # ═══════════════════════════════════════════════════════════
-        # Step 3: Run fact-checker
-        # ═══════════════════════════════════════════════════════════
+       
         print("-" * 60)
         print("\n🔍 Step 3: Running fact-checker...\n")
         
@@ -69,16 +64,16 @@ def test_fact_checker():
         
         # Display results
         print("\n")
-        print("╔═══════════════════════════════════════════════════════════╗")
-        print("║  📋 Fact-Checker Output                                   ║")
-        print("╚═══════════════════════════════════════════════════════════╝")
+     
+        print("📋 Fact-Checker Output")
+     
         print("\n")
         
-        print(f"✅ Success: {fact_check.success}")
-        print(f"⏱️  Duration: {duration:.1f}s")
-        print(f"📊 Passed: {fact_check.passed}")
-        print(f"⚠️  Issues found: {len(fact_check.issues)}")
-        print(f"📝 Summary: {fact_check.content}")
+        print(f" Success: {fact_check.success}")
+        print(f"Duration: {duration:.1f}s")
+        print(f" Passed: {fact_check.passed}")
+        print(f"Issues found: {len(fact_check.issues)}")
+        print(f"Summary: {fact_check.content}")
         print("\n")
         
         if fact_check.issues:
