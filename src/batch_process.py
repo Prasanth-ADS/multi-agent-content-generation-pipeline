@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 from cli import run_pipeline
 import sys
+import jax as jx
 
 def process_batch(input_dir: str, output_dir: str):
     """Process multiple PRD files in a directory"""
