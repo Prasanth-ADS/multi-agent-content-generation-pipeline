@@ -26,6 +26,7 @@ This pipeline automates the entire content creation process:
 - Ollama (installed and running)
 - 16GB RAM recommended
 - Internet connection
+-mobile
 
 ## Installation
 
