@@ -1219,6 +1219,6 @@ SOFTWARE.
 
 ---
 
-**Built with ❤️ by [Your Name]**
+**Built with ❤️ by Prasanth Selvamurugan**
 
 **Star ⭐ this repo if you find it useful!**
